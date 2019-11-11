@@ -17,11 +17,17 @@ router.get('/', (req, res) => {
 
 
 router.get('/eventos', async (req, res) => {
+	let num = 100;
 	let result = {}
-	let feed = await controler.get(url)
-	result.respuesta = 'exito';
-	result.feed = feed;
-	res.send(result);
+	if (num >= 0){
+		let feed = await controler.show(url, num)
+		result.respuesta = 'exito'
+		result.feed = feed
+	} else {
+		result.respuesta = 'fallo',
+		result.motivo = 'Numero no es mayor a 0'
+	}
+	res.send(result)
 });
 
 

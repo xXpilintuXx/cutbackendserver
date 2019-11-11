@@ -6,21 +6,29 @@ const { text } = require('html-to-json-data/definitions');
 class cleaner {
     constructor(){
 
-        // this.cleanThis = (html) => {
-        //     let data = striptags(html, [], []); 
-        //     data = data.replace(/\r|\n/g, "");
-        //     data = data.replace(/&nbsp;|&quot;/g, "  ");
-        //     data = data.replace('                  ', '","');
-        //     data = data.replace('            ', '');
-        //     data = this.formatIntoJson(data);
-        //     console.log(data)
-        //     return data;
-        // }
+        this.cleanThis = (html) => {
+            let data = striptags(html, [], []); 
+            data = data.replace(/\r|\n/g, " ");
+            data = data.replace(/&nbsp;|&quot;/g, "  ");
+            data = data.replace('                  ', '","');
+            data = data.replace('            ', '');
+            data = this.deleteDescription(data);
+            // data = this.formatIntoJson(data);
+            // console.log(data)
+            return data;
+        }
 
+        this.deleteDescription = (text) => {
+            text = text.replace('Descripción: ', '');
+            return text;
+        }
 
         this.cleanData = (data) => {
             let str = data.split(':');
             str.splice(0, 1, '');
+            str = str.join();
+            str = str.split('');
+            str.splice(1, 1, '');
             str = str.join();
             str = str.replace(/,/g, '');
             return str
@@ -34,7 +42,7 @@ class cleaner {
                 lugar: text('.field-name-field-lugar-even'),
                 fecha: text('.field-name-field-fecha-event')
             })
-            //json.descripcion = this.cleanData(json.descripcion);
+            json.descripcion = this.cleanThis(json.descripcion);
             json.tipo = this.cleanData(json.tipo);
             json.tema = this.cleanData(json.tema);
             json.lugar = this.cleanData(json.lugar);

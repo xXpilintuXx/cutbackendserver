@@ -21,11 +21,18 @@ class rssModel {
         this.show = async (url, num) => {
             let allFeed = await this.get(url);
             let items = allFeed.items;
+            let limit = 0;
+            if(items.length < num) {
+                limit = items.length;
+            }
+            else {
+                limit = num;
+            }
             if (Array.isArray(items) && items.length == 0){
                 return "Empty feed";
             } else {
                 let limitedFeed = [];
-                for(let i = 1; i <= num; i++){
+                for(let i = 0; i < limit; i++){
                     //items[i].contentSnippet = this.clean(items[i].contentSnippet);
                     //items[i].content = this.clean(items[i].content);
                     items[i].content = this.clean(items[i].content);
