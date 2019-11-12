@@ -17,6 +17,10 @@ class rssModel {
             return clear.htmlToJson(data)
         }
 
+        this.clear = function (data) {
+            return clear.cleanThis(data);
+        }
+
 
         this.show = async (url, num) => {
             let allFeed = await this.get(url);
@@ -35,7 +39,9 @@ class rssModel {
                 for(let i = 0; i < limit; i++){
                     //items[i].contentSnippet = this.clean(items[i].contentSnippet);
                     //items[i].content = this.clean(items[i].content);
-                    items[i].content = this.clean(items[i].content);
+                    //items[i].content = this.clean(items[i].content);
+                    items[i].pubDate = this.clear(items[i].pubDate);
+                    items[i].contentSnippet = this.clear(items[i].contentSnippet);
                     limitedFeed.push(items[i]);   
                 }
                 return limitedFeed;
