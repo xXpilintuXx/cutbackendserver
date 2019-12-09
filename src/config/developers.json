@@ -1,13 +1,17 @@
 {
     "title": "Rest-Server for CUT APP",
     "fecha": "11/11/19",
+    "Studio":"Aixcaquema Studio",
     "developers": [{
         "name": "Emanuel Lupercio",
         "alias": "xXpilintuXx",
         "github": "xXpilintuXx"
     },{
-        "name": "Ramon Tapia",
+        "name": "Juan Tapia",
         "alias": "LostMind"
+    }{
+        "name": "Israel Vargas",
+        "alias": "Duy"
     }
     ]
 }
