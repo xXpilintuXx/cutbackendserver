@@ -72,4 +72,4 @@ app.use((req, res, next) => {
 //run
 app.listen(app.get('port'), () => {
 	console.log('listen on port ', app.get('port'))
-})
+});

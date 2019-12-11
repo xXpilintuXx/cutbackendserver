@@ -1,6 +1,6 @@
 const striptags = require('striptags');
 const convert = require('html-to-json-data');
-const { text } = require('html-to-json-data/definitions');
+const { text,src } = require('html-to-json-data/definitions');
 
 
 class cleaner {
@@ -47,24 +47,31 @@ class cleaner {
             }
             return url
         }
+
+
+        this.getImage = (html) => {
+
+        }
         
         this.htmlToJson = (html) => {
-            console.log(html)
             const json = convert(html, {
                 descripcion: text('.field-name-field-descripcion-evento'),
                 tipo: text('.field-name-field-tipo-de-evento'),
                 tema: text('.field-name-field-tema-del-evento'),
                 lugar: text('.field-name-field-lugar-even'),
                 fecha: text('.field-name-field-fecha-event'),
-            
+                img: src('img', 'http://www.cutonala.udg.mx/rss/eventos_proximos')
             })
 
-            json.descripcion = this.cleanThis(json.descripcion);
-            json.tipo = this.cleanData(json.tipo);
-            json.tema = this.cleanData(json.tema);
-            json.lugar = this.cleanData(json.lugar);
-            json.fecha = this.cleanData(json.fecha);
-            json.link = this.cleanData(json.link);
+            // json.descripcion = this.cleanThis(json.descripcion);
+            // json.tipo = this.cleanData(json.tipo);
+            // json.tema = this.cleanData(json.tema);
+            // json.lugar = this.cleanData(json.lugar);
+            // json.fecha = this.cleanData(json.fecha);
+            // json.link = this.cleanData(json.link);
+            if (json.img === 'http://www.cutonala.udg.mx/rss/eventos_proximos') {
+                json.img = "http://www.cutonala.udg.mx/sites/default/files/default_images/agenda_fondo_0_0.png";
+            }
             return json;
         }
 

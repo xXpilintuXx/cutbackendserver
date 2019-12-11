@@ -42,7 +42,7 @@ class rssModel {
                 let limitedFeed = [];
                 for(let i = 0; i < limit; i++){
                     //items[i].contentSnippet = this.clean(items[i].contentSnippet);
-                    items[i].content = this.clear(items[i].content);
+                    items[i].content = this.clean(items[i].content);
                     items[i].link = this.clearurl(items[i].link)
                     //items[i].content = this.clean(items[i].content);
                     items[i].pubDate = this.clear(items[i].pubDate);
